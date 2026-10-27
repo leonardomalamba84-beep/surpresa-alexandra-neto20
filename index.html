@@ -323,11 +323,19 @@ musicBtn.addEventListener('click', () => {
     startBtn.addEventListener('click',startAmbientPetals,{once:true});
     document.querySelectorAll('.reveal-card').forEach(card=>{
       card.addEventListener('click',()=>{
-        const opened=card.classList.toggle('open');
-        card.setAttribute('aria-expanded',String(opened));
-        if(opened)petals(5);
-      });
-    });
+       
+const music = new Audio('./musica/Count%20on%20Me.mp3');
+music.preload = 'auto';
+
+startBtn.addEventListener('click', () => {
+  revealExperience();
+
+  music.currentTime = 0;
+  music.play().catch(error => {
+    console.error('Não foi possível reproduzir a música:', error);
+  });
+});
+
     const gift=document.getElementById('gift');
     const giftNote=document.getElementById('giftNote');
     function openGift(){
